@@ -1,0 +1,50 @@
+{
+  "status": "structure_exploration_completed_with_explicit_coverage_limits",
+  "completion_verdict": "已完成当前表单的初始题、全部已观察选择选项、条件题及递归分支的交互探索，建立33个题目的结构清单；未穷举任意跨题组合，不能据此证明不存在未触发的组合条件，也未完成端到端填写或提交验证。",
+  "persistence_and_final_state": "未观察到自动保存提示；这不证明没有后台草稿或保存机制。本次开始时全空，结束前逐一取消本次测试的28个多选、医保子题和11个顶层单选，并清除3个下拉及日期；最终DOM与页面目录确认回到0/18、18个常显题的选中/输入值全部为空。没有清除既有用户草稿，没有提交；未再刷新页面验证跨刷新持久化。",
+  "coverage_summary": [
+    "初始态：18个常显题全部读取；无iframe；单页滚动，未见分页Next。",
+    "11个顶层二元题：每题两个选项都实际切换，记录触发出现与反向收起；抗菌药重复click曾取消选择，已从否切回是补测并按实际checked状态记录。",
+    "10个药物/长处方类顶层题选是各新增1题；处方是否合理选否新增5题；同时展开可见33个编号题。",
+    "医保嵌套：q16=是→q27；q27=否（请写明药品名称）→同题可选textarea；改回是收起该补充框。",
+    "科室31项、点评药师9项、品规总数5项均实际选择过；普通选项未观察到新增编号题；科室和药师的其他在展开菜单内显示可选补充textarea。",
+    "三组不合理事项28个复选项逐个选中/取消；另测全部选中、全部不选。按实际可见控件签名比对，28个单项及全选均与全不选相同，没有观察到再新增或显示控件。没有穷举28个复选项的全部子集。",
+    "返回切换：28项全选→处方合理=是→再改否，原28个勾选仍保留；证实条件题收起不清空历史选择。",
+    "日期：实际打开日期时间选择器，包含年月日、00–23小时、00–59分钟和OK；未按OK却已带入当前时间，收起后仍保留，最后通过清除控件恢复空值。",
+    "恢复：结束时页面目录0/18，18个常显题全部空；本次测试多选及医保子题在收起前逐一取消。"
+  ],
+  "not_checked": [
+    "未穷举所有顶层开关、下拉、多选之间的任意组合；观察结果支持所列触发关系，不是对不存在其他组合条件的形式化证明。",
+    "未输入处方号、医生姓名、药名、金额、品规数、疗程、合理性或原因等自由文本；未测试特殊文本是否触发额外行为。",
+    "未点击Submit，未验证服务端必填、数值范围、复合题各空校验、成功提交或提交后页面。",
+    "未验证自动保存的位置、保存时机、网络请求、服务端草稿或跨刷新持久化；仅验证结束时当前界面空白。",
+    "未验证真实处方识别、政策目录判定或现有wps-mcp的实际填写能力；本报告只建立真实表单结构和适配要求。",
+    "未修改表单配置、选项错字或不完整文案。"
+  ],
+  "open_checks": [],
+  "evidence_files": [
+    "wps-conditional-questions.png：展开的条件题截图",
+    "wps-date-time-control.png：日期时间控件截图",
+    "wps-restored-blank.png：恢复为0/18空表的截图"
+  ],
+  "independent_review": {
+    "status": "final_recheck_completed_no_new_findings",
+    "reviewer": "/root/explore_wps_form/structure_audit",
+    "scope": "只读字段、选项、分支及保存的UI状态证据；无浏览器操作",
+    "finding_dispositions": [
+      {
+        "finding": "DOM存在补充textarea被命名为visible",
+        "disposition": "fixed",
+        "change": "改名parents_with_dom_supplementary_textarea并添加可见性限制说明"
+      },
+      {
+        "finding": "source_artifacts漏列后续覆盖与最终状态文件",
+        "disposition": "fixed",
+        "change": "补入dropdown、visible-checkbox、final-blank-state证据来源"
+      }
+    ],
+    "limitations": "未独立复验初始态、日期实际操作、无iframe或未提交事实；这些仍是根代理直接观察。",
+    "final_recheck": "最终JSON/TXT的33题、选项、子字段、证据路径和覆盖边界一致；最终空白状态与final-blank-state.json一致。仅更新审计元数据。"
+  },
+  "submitted": false
+}

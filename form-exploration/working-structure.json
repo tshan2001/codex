@@ -1,0 +1,372 @@
+{
+  "title": "北京航天总医院处方点评记录表",
+  "url": "https://f.wps.cn/g/De0LJKfR/",
+  "canonical_url": "https://f.wps.cn/ksform/w/write/De0LJKfR#routePromt",
+  "inspection_date": "2026-10-08",
+  "status": "in_progress",
+  "id_convention": "q01等记录ID由本报告自定义，不是WPS官方字段ID；observed_container_id是UI/DOM可观察容器标识，未确认是后端字段ID。",
+  "method": "由根代理在用户授权的Chrome登录会话中逐项进行UI交互；结构子代理整理实际快照和覆盖表。未读取隐藏运行状态或调用未公开WPS写API。",
+  "initial_state": {
+    "answered": 0,
+    "visible_questions": 18,
+    "all_answers_empty": true,
+    "all_radio_controls_enabled": true,
+    "autosave_notice_observed": false,
+    "autosave_mechanism_verified": false,
+    "submit_visible": true,
+    "next_button_observed": false,
+    "source": "根代理登录后实际UI观察"
+  },
+  "questions": [
+    {
+      "id": "q01",
+      "initial_display_number": 1,
+      "observed_container_id": "ipcsht",
+      "title": "处方号",
+      "description": "",
+      "required": true,
+      "control_type": "textarea",
+      "options": null,
+      "visibility": "initial",
+      "interaction_verified": false
+    },
+    {
+      "id": "q02",
+      "initial_display_number": 2,
+      "observed_container_id": "xihnqc",
+      "title": "就诊科室",
+      "description": "",
+      "required": true,
+      "control_type": "combobox",
+      "options": [
+        "神经内科",
+        "心血管内科",
+        "呼吸与危重症医学科",
+        "消化内科",
+        "内分泌科",
+        "血液肿瘤科",
+        "肾内科",
+        "干部医疗科",
+        "儿科",
+        "康复医学科",
+        "普外科",
+        "骨外科",
+        "胸外科",
+        "心脏大血管外科",
+        "泌尿外科",
+        "妇产科",
+        "重症医学科",
+        "血管外科",
+        "肛肠科",
+        "医疗美容科",
+        "麻醉科",
+        "耳鼻喉头颈外科",
+        "眼科",
+        "口腔科",
+        "急诊科",
+        "感染科",
+        "中医科",
+        "皮肤科",
+        "综合门诊",
+        "神经外科",
+        "其他"
+      ],
+      "visibility": "initial",
+      "interaction_verified": false,
+      "options_read_in_ui": true
+    },
+    {
+      "id": "q03",
+      "initial_display_number": 3,
+      "observed_container_id": "d2v4ic",
+      "title": "处方医生",
+      "description": "",
+      "required": true,
+      "control_type": "textarea",
+      "options": null,
+      "visibility": "initial",
+      "interaction_verified": false
+    },
+    {
+      "id": "q04",
+      "initial_display_number": 4,
+      "observed_container_id": "286ubz",
+      "title": "点评药师",
+      "description": "",
+      "required": true,
+      "control_type": "combobox",
+      "options": null,
+      "visibility": "initial",
+      "interaction_verified": false
+    },
+    {
+      "id": "q05",
+      "initial_display_number": 5,
+      "observed_container_id": "9pekb6",
+      "title": "处方日期",
+      "description": "",
+      "required": true,
+      "control_type": "text_with_calendar",
+      "options": null,
+      "visibility": "initial",
+      "interaction_verified": false,
+      "html_input_type": "text",
+      "placeholder": "Please select a time (year-month-day hour:minute)"
+    },
+    {
+      "id": "q06",
+      "initial_display_number": 6,
+      "observed_container_id": "49wxul",
+      "title": "处方中药物品规总数",
+      "description": "",
+      "required": true,
+      "control_type": "combobox",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "visibility": "initial",
+      "interaction_verified": false,
+      "options_read_in_ui": true
+    },
+    {
+      "id": "q07",
+      "initial_display_number": 7,
+      "observed_container_id": "brnavk",
+      "title": "处方药品总金额",
+      "description": "",
+      "required": true,
+      "control_type": "text",
+      "options": null,
+      "visibility": "initial",
+      "interaction_verified": false,
+      "html_input_type": "text",
+      "placeholder": "Enter a number (decimals allowed)"
+    },
+    {
+      "id": "q08",
+      "initial_display_number": 8,
+      "observed_container_id": "5wm9h4",
+      "title": "处方中是否包含抗菌药物",
+      "description": "口服及注射（不包含局部用药）",
+      "required": true,
+      "control_type": "radio",
+      "options": [
+        "否",
+        "是"
+      ],
+      "visibility": "initial",
+      "interaction_verified": false
+    },
+    {
+      "id": "q09",
+      "initial_display_number": 9,
+      "observed_container_id": "i3hu6i",
+      "title": "处方中是否包含抗肿瘤药",
+      "description": "",
+      "required": true,
+      "control_type": "radio",
+      "options": [
+        "否",
+        "是"
+      ],
+      "visibility": "initial",
+      "interaction_verified": false
+    },
+    {
+      "id": "q10",
+      "initial_display_number": 10,
+      "observed_container_id": "8xl3ga",
+      "title": "处方中是否包含激素类药物",
+      "description": "口服及注射（不包含局部用药）",
+      "required": true,
+      "control_type": "radio",
+      "options": [
+        "否",
+        "是"
+      ],
+      "visibility": "initial",
+      "interaction_verified": false
+    },
+    {
+      "id": "q11",
+      "initial_display_number": 11,
+      "observed_container_id": "u1s7xw",
+      "title": "处方中是否包含注射剂",
+      "description": "",
+      "required": true,
+      "control_type": "radio",
+      "options": [
+        "否",
+        "是"
+      ],
+      "visibility": "initial",
+      "interaction_verified": false
+    },
+    {
+      "id": "q12",
+      "initial_display_number": 12,
+      "observed_container_id": "n1t1ym",
+      "title": "处方中是否包含中成药",
+      "description": "",
+      "required": true,
+      "control_type": "radio",
+      "options": [
+        "否",
+        "是"
+      ],
+      "visibility": "initial",
+      "interaction_verified": false
+    },
+    {
+      "id": "q13",
+      "initial_display_number": 13,
+      "observed_container_id": "ybqms9",
+      "title": "处方中是否包含中药注射剂",
+      "description": "",
+      "required": true,
+      "control_type": "radio",
+      "options": [
+        "否",
+        "是"
+      ],
+      "visibility": "initial",
+      "interaction_verified": false
+    },
+    {
+      "id": "q14",
+      "initial_display_number": 14,
+      "observed_container_id": "9fb0fe",
+      "title": "是否为第二类精神药品处方",
+      "description": "",
+      "required": true,
+      "control_type": "radio",
+      "options": [
+        "否",
+        "是"
+      ],
+      "visibility": "initial",
+      "interaction_verified": false
+    },
+    {
+      "id": "q15",
+      "initial_display_number": 15,
+      "observed_container_id": "gw80sx",
+      "title": "处方中是否包含国家基本药品",
+      "description": "",
+      "required": true,
+      "control_type": "radio",
+      "options": [
+        "否",
+        "是"
+      ],
+      "visibility": "initial",
+      "interaction_verified": false
+    },
+    {
+      "id": "q16",
+      "initial_display_number": 16,
+      "observed_container_id": "i6mqlx",
+      "title": "处方中是否包含国家医保限制适应症类药品",
+      "description": "",
+      "required": true,
+      "control_type": "radio",
+      "options": [
+        "否",
+        "是"
+      ],
+      "visibility": "initial",
+      "interaction_verified": false
+    },
+    {
+      "id": "q17",
+      "initial_display_number": 17,
+      "observed_container_id": "lsjcnl",
+      "title": "是否慢性病长处方",
+      "description": "",
+      "required": true,
+      "control_type": "radio",
+      "options": [
+        "否",
+        "是"
+      ],
+      "visibility": "initial",
+      "interaction_verified": false
+    },
+    {
+      "id": "q18",
+      "initial_display_number": 18,
+      "observed_container_id": "nz3udo",
+      "title": "处方是否合理",
+      "description": "",
+      "required": true,
+      "control_type": "radio",
+      "options": [
+        "是",
+        "否"
+      ],
+      "visibility": "initial",
+      "interaction_verified": false
+    },
+    {
+      "id": "q02.other",
+      "parent_question_id": "q02",
+      "title": null,
+      "placeholder": "Please enter additional content(Optional)",
+      "required": false,
+      "control_type": "textarea",
+      "visibility": {
+        "question": "q02",
+        "equals": "其他"
+      },
+      "is_inline_supplement": true,
+      "counted_as_separate_question": false,
+      "interaction_verified": true
+    }
+  ],
+  "conditions": [
+    {
+      "id": "c01",
+      "if": {
+        "question": "q02",
+        "equals": "其他"
+      },
+      "shows": [
+        "q02.other"
+      ],
+      "verified": true,
+      "visible_numbered_question_count": 18
+    }
+  ],
+  "coverage": [
+    {
+      "id": "state01",
+      "action": "q02选择其他",
+      "verified": true,
+      "observed_new_controls": [
+        "q02.other"
+      ],
+      "visible_question_count": 18
+    }
+  ],
+  "observations": [
+    {
+      "topic": "iframe",
+      "fact": "实际DOM未发现iframe",
+      "source": "根代理登录后DOM观察"
+    }
+  ],
+  "remaining": [
+    "三个下拉的完整选项和选择分支",
+    "11个常显二元题的两个值及递归子分支",
+    "组合条件覆盖",
+    "返回切换行为",
+    "恢复初始空状态或记录残留",
+    "实际控件结构及iframe",
+    "截图证据"
+  ],
+  "submitted": false
+}
