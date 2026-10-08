@@ -1,0 +1,141 @@
+WPS MCP runtime test — progress, not acceptance
+Date: 2026-10-08 America/Los_Angeles
+User exit criterion: a fast and stable approach to fill WPS form is determined.
+Verdict: NOT MET YET. The user-launched headed candidate suite passed 52 tests.
+Actual WPS filling, timings and repeatability are still pending.
+
+Latest validation run
+Run: work/mcp-validation/live-results/run-20261008T132644-95095
+Relevant raw local test summary (full log at local-candidate-tests.log):
+Ran 52 tests in 67.593s
+OK
+This is the duration of the whole local test suite, NOT a prescription fill time.
+It covers original browser/generic tests and the new synthetic WPS widget tests.
+The original installer suite was not included; its baseline path issue is below.
+Actual SDK handshake returned the expected nine tools. The real WPS open call
+completed, but independent inspection saw zero question containers at that time.
+The user confirms they did not log into the MCP dedicated browser.
+Current run has synthetic_write_attempted=false and no completed fill runs.
+
+User now asks to reuse their signed-in Chrome tab.
+Current Python MCP creates its own persistent profile and new page; there is no
+CDP or Codex-extension tab attachment code. The Codex CUA route could exercise
+the real UI, but it would not prove this MCP's end-to-end runtime path.
+Two attempts (shared-tab connection, then surface inventory) timed out before
+any page interaction. Awaiting browser-extension reconnection; no form changed.
+
+Latest user-run result (2026-10-08 12:59 local)
+Source: work/mcp-validation/manual-browser-smoke.log
+Full result:
+{"browser_smoke": "passed", "recognized_demo_fields": 13, "scope": "local_synthetic_demo_only", "live_wps_tested": false}
+This verifies the original MCP browser implementation against a local synthetic
+demo using --headed. It does not verify headless execution, live WPS or Kimi.
+The assistant shell remains subject to the startup restriction below. No attempt
+is made to route the blocked action through another agent-controlled tool.
+
+Resume attempt after user said continue
+The same local smoke test was retried once with default execution permissions.
+It again failed before page load; no effective permission change was observed.
+Full relevant raw event from work/mcp-validation/chromium-smoke-resume.log:
+[pid=90592][err] [1008/125503.000237:FATAL:base/apple/mach_port_rendezvous_mac.cc:159] Check failed: kr == KERN_SUCCESS. bootstrap_check_in org.chromium.Chromium.MachPortRendezvousServer.90592: Permission denied (1100)
+
+Prepared manual handoff: outputs/Run-MCP-Smoke.command
+This user-run launcher runs only the original local demo smoke test with the
+already downloaded browser and dependencies, saves manual-browser-smoke.log,
+and exits. It does not run a background command bridge or access the hospital
+form. The assistant has not launched it outside the sandbox.
+
+Repository and isolation
+Source: https://github.com/tshan2001/wps-mcp
+Base revision: ffba88064a214344422311858ada075b2e6afbb1
+Task-owned worktree: work/wps-mcp-test
+Branch: codex/wps-form-validation
+Source adaptation is prepared in this worktree: exact WPS question
+containers, compound input fields, dropdowns and supplemental inputs, and the
+observed Ant date/time picker. No pushes or hospital form submissions.
+Verified adaptation committed locally as:
+c4c8d6d7fbb724dc872833e58fc6c24edd44a93b (Support WPS collection form widgets).
+Working tree is clean; committed file hashes match the reviewed and tested files.
+
+Candidate checks (after adaptation; no browser launched)
+- Python unit checks: 10 passed (existing PureTests + PluginTests, new date
+  normalization and partial-failure handling).
+- server.py --check passed; actual mcp_smoke.py stdio handshake passed with the
+  original nine tool names and protocol 2025-11-25.
+- Independent source reviewer fill_method_review: two initial P2 findings fixed
+  (supplement expansion failure losing prior results, and supplement field IDs
+  failing when the menu closed). Final source review reports no new confirmed
+  defect; reviewer ran 3 unit checks and 8 independent mocks successfully.
+- Candidate browser tests subsequently passed in the user-launched headed run
+  described above. Real WPS fill tests and Kimi integration remain unrun.
+- Reviewed server.py SHA256:
+  2e56414917d4e770d72c45cb621713a069ec13142301726828fc41546ef1d0c4
+- Reviewed dom.js SHA256:
+  7577c90127e4887a49baba14ddfc959da42886b8e3b8d2fe55cebaea50d40c89
+
+Environment actually installed in work/mcp-validation/venv
+Python 3.12.14; mcp 1.30.0; Playwright 1.63.0.
+Official Playwright browser downloads stored in work/mcp-validation/browsers.
+These are task-local dependencies; Kimi configuration and the existing Chrome profile were not changed.
+
+Completed checks
+1. python server.py --check: passed actual SDK tool registration.
+2. python mcp_smoke.py: passed real stdio initialize/list_tools/wps_status.
+   Protocol: 2025-11-25. All 9 expected tools listed; automatic_submission=false.
+3. Original 46-test suite with system Chrome: 14 passed, 1 failed, 31 errors.
+   The 31 browser errors occur in launch_persistent_context before any page test runs.
+   The other failure is test_absolute_command_and_arguments: macOS /var versus
+   resolved /private/var temporary path. Existing baseline issue, not repaired.
+4. Canonical server.py --smoke-test with the downloaded Playwright Chromium:
+   fails at browser startup; does not reach even the local demo form.
+
+Full relevant raw Chromium event
+[pid=89840][err] [1008/125107.117152:FATAL:base/apple/mach_port_rendezvous_mac.cc:159] Check failed: kr == KERN_SUCCESS. bootstrap_check_in org.chromium.Chromium.MachPortRendezvousServer.89840: Permission denied (1100)
+Local event source: work/mcp-validation/chromium-smoke.log
+No remote event URL is available for this local process log.
+
+Approval rejection
+write_stdin rejected: approval required by policy, but AskForApproval::Granular.sandbox_approval is false
+Rejected action: send wps_open_form for https://f.wps.cn/g/De0LJKfR/ to the real MCP test client.
+The rejected request did not execute. It was not retried through another tool.
+
+Prepared acceptance inputs
+work/mcp-validation/test-cases.json: synthetic 25-, 18-, 20-, and 33-question cases.
+work/mcp-validation/test-plan.txt: repeated timing, exact readback, retry, nested fields,
+multi-select replacement, prior-answer residue, partial failure and negative checks.
+The payload schema is a test specification, not the current MCP input contract.
+No synthetic payload has been entered into the hospital's production form.
+
+Next step
+User-run launcher prepared: outputs/Run-WPS-Validation.command.
+It is a bounded, fixed validation program, not a background command bridge.
+It will run local regression tests, open the specified real WPS form via the
+actual SDK/stdio MCP path, allow manual login, and refuse to overwrite an
+existing draft. Its initial scope is one synthetic main25 fill, two identical
+retries, and exact checkbox replacement, with an independent DOM readback.
+Additional cases and fresh-run repeats remain pending and cannot be claimed
+from this smaller run. No final submission will be attempted.
+This initial runner does NOT automatically restore an empty draft; it reports
+that limitation and keeps exit_criterion_met=false even if its four stages pass.
+Adapter timing, observation/screenshot timing, and MCP wall time are separate.
+Before the first synthetic fill, its observer records only structure and
+nonempty field IDs, never pre-existing text, choices or login-page data.
+Twelve comparator self-checks passed (including known-bad values, duplicate IDs,
+and hidden duplicate rows); Python compilation and launcher shell syntax passed.
+These checks did not start a browser.
+Independent reviewer fill_method_review approved the frozen four-file launcher
+package for user-run validation after rechecking all three harness findings.
+Reviewer ran comparator self-test, three Node fake-DOM privacy checks, and shell
+syntax validation. No open confirmed code findings remain in that review; the
+  actual live WPS runtime gate remains pending.
+Keep local synthetic fixture results separate from real WPS results and cold
+startup separate from warm fill timing. Do not claim a runtime reliability percentage.
+
+PARKED
+- macOS baseline installer path assertion: /var versus /private/var.
+- Real WPS browser login, widget behavior, fill speed and stability remain untested through MCP.
+- Kimi-to-MCP connection remains untested; successful SDK client handshake is not Kimi integration.
+- WPS draft persistence is unknown; a new browser tab must not be treated as a guaranteed blank response.
+- A cleanup request to close old idle exec session 36379 was also rejected by
+  the same sandbox_approval=false control. Its closure was not confirmed; it
+  was not used to run further browser actions or replaced by another bridge.
